@@ -4,7 +4,6 @@ import "../assets/Car.css";
 class Car extends React.Component {
   constructor(props) {
     super();
-    console.log(props)
     this.state = { driver: props.driver, stints: 1 };
   }
   updateStints = e => {
@@ -21,7 +20,7 @@ class Car extends React.Component {
   getRaceTime = () => {
     const { pitTime, laps } = this.props.race;
     const { zeroFuelLaptime, weightCost } = this.state.driver;
-    const { fuelCapacity } = this.state.driver.car; 
+    const { fuelCapacity } = this.state.driver.car;
     const { stints } = this.state;
     const pitTimeLost = (stints - 1) * pitTime;
     const bareLaps = laps * zeroFuelLaptime;
@@ -38,8 +37,7 @@ class Car extends React.Component {
     return totalTime;
   };
   componentWillReceiveProps = props => {
-    console.log(props);
-    this.setState({ car: props.driver.car });
+    this.setState({ driver: props.driver });
   };
   msToHTime(s) {
     // Pad to 2 or 3 digits, default is 2
@@ -67,7 +65,6 @@ class Car extends React.Component {
   }
   render() {
     const { driver } = this.state;
-    console.log(driver)
     return (
       <div
         className="card col-sm-12"
@@ -77,7 +74,8 @@ class Car extends React.Component {
         <div className="card-body">
           <h6 className="card-title">Type: {driver.car.makeModel}</h6>
           <p>
-            Fuel Use: {driver.burnRate} per lap - Maximum Fuel: {driver.car.fuelCapacity}
+            Fuel Use: {driver.burnRate} per lap - Maximum Fuel:{" "}
+            {driver.car.fuelCapacity}
           </p>
           <p className="card-title">
             Average Lap: {this.msToTime(driver.zeroFuelLaptime)}

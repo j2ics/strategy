@@ -7,14 +7,13 @@ import _ from "lodash";
 import Faker from "faker";
 import RaceDataForm from "./components/RaceDataForm";
 import EditCar from "./components/EditCar";
-import { throwStatement } from "@babel/types";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       // driversReady: false,
-      driversReady: true,
+      driversReady: false,
       // drivers: [],
       driver: {
         fuelCapacity: 105,
@@ -23,7 +22,7 @@ class App extends React.Component {
         image: Faker.image.image(),
         weightCost: 30,
         burnRate: 2.35,
-        car: _.sample(ROSTER.cars),
+        car: { makeModel: "BMW M6 GTLM", fuelCapacity: 105 },
         liveryColor: _.sample([
           "blue",
           "red",
@@ -38,17 +37,16 @@ class App extends React.Component {
     };
   }
 
-  updateCar = c => {
-    console.log(c)
-    this.setState(prevState=> {
-      let newDriver = prevState.driver;
-      newDriver.car = c;
-      return {driver: newDriver}
+  updateDriver = d => {
+    this.setState(prevState => {
+      return {
+        driversReady: true,
+        driver: d
+      };
     });
   };
 
   updateRace = r => {
-    console.log("updating race", r);
     this.setState({ race: r });
   };
 
@@ -60,25 +58,25 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App jumbotron">
         <h1>Race Strategy App</h1>
         <RaceDataForm race={this.state.race} onUpdateRace={this.updateRace} />
         <div>
-          {this.state.driversReady ? (
-            <div className="container">
-              {/* <p>Click on Driver to Edit</p> */}
-              <div className="row">
+          <div className="container">
+            {/* <p>Click on Driver to Edit</p> */}
+            <div className="row">
+              {this.state.driversReady == false ? (
                 <EditCar
-                  onUpdateCar={this.updateCar}
+                  onUpdateDriver={this.updateDriver}
                   roster={ROSTER.cars}
-                  car={this.state.driver.car}
+                  driver={this.state.driver}
+                  // race={this.state.race}
                 />
-                {this.showDrivers()}
-              </div>
+              ) : (
+                this.showDrivers()
+              )}
             </div>
-          ) : (
-            <DriversForm onSetCars={this.setCars} />
-          )}
+          </div>
         </div>
       </div>
     );

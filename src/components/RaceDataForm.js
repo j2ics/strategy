@@ -32,7 +32,7 @@ class RaceDataForm extends React.Component {
       <form onSubmit={this.updateRace}>
         <label>Laps</label>
         <input type="number" value={laps} onChange={this.changeLaps} />
-        <label>Pitlane Time (seconds) </label>
+        <label>AVG Pitlane Time (seconds) </label>
         <input
           type="number"
           value={pitTime}
