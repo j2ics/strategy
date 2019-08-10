@@ -21,7 +21,7 @@ class EditCar extends React.Component {
   };
   render() {
     return (
-      <div className="card card col-sm-4">
+      <div className="card card col-sm-12">
         <h5 className="card-title">Edit Car Data</h5>
         <div className="card-body">
           <label>Select Car</label>

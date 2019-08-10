@@ -5,7 +5,7 @@ class Car extends React.Component {
   constructor(props) {
     super();
     console.log(props)
-    this.state = { car: props.driver, stints: 1 };
+    this.state = { driver: props.driver, stints: 1 };
   }
   updateStints = e => {
     this.setState({ stints: e.target.value });
@@ -13,14 +13,15 @@ class Car extends React.Component {
 
   checkCapacity = () => {
     return (
-      this.state.car.fuelCapacity >=
-      this.state.car.burnRate * (this.props.race.laps / this.state.stints)
+      this.state.driver.fuelCapacity >=
+      this.state.driver.burnRate * (this.props.race.laps / this.state.stints)
     );
   };
 
   getRaceTime = () => {
     const { pitTime, laps } = this.props.race;
-    const { fuelCapacity, zeroFuelLaptime, weightCost } = this.state.car;
+    const { zeroFuelLaptime, weightCost } = this.state.driver;
+    const { fuelCapacity } = this.state.driver.car; 
     const { stints } = this.state;
     const pitTimeLost = (stints - 1) * pitTime;
     const bareLaps = laps * zeroFuelLaptime;
@@ -65,20 +66,21 @@ class Car extends React.Component {
     );
   }
   render() {
-    const { car } = this.state.car;
+    const { driver } = this.state;
+    console.log(driver)
     return (
       <div
-        className="card col-sm-8"
-        style={{ width: "18rem", borderColor: car.liveryColor }}
+        className="card col-sm-12"
+        style={{ width: "18rem", borderColor: driver.liveryColor }}
       >
-        <h5 className="card-title">{car.driverName}</h5>
+        <h5 className="card-title">{driver.driverName}</h5>
         <div className="card-body">
-          <h6 className="card-title">Type: {car.makeModel}</h6>
+          <h6 className="card-title">Type: {driver.car.makeModel}</h6>
           <p>
-            Fuel Use: {car.burnRate} per lap - Maximum Fuel: {car.fuelCapacity}
+            Fuel Use: {driver.burnRate} per lap - Maximum Fuel: {driver.car.fuelCapacity}
           </p>
           <p className="card-title">
-            Average Lap: {this.msToTime(this.props.driver.zeroFuelLaptime)}
+            Average Lap: {this.msToTime(driver.zeroFuelLaptime)}
           </p>
           <form>
             <label htmlFor="stops">How many stints?</label>

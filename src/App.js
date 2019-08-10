@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Car from "./components/Car";
 import DriversForm from "./components/DriversForm";
-import ROSTER from "./assets/ROSTER";
+import ROSTER from "./assets/roster";
 import _ from "lodash";
 import Faker from "faker";
 import RaceDataForm from "./components/RaceDataForm";
@@ -19,7 +19,7 @@ class App extends React.Component {
       driver: {
         fuelCapacity: 105,
         zeroFuelLaptime: 62376,
-        driverName: `Kima Kahhinen`,
+        driverName: `Default Driver`,
         image: Faker.image.image(),
         weightCost: 30,
         burnRate: 2.35,
