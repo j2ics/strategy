@@ -20,7 +20,6 @@ class Car extends React.Component {
   getRaceTime = () => {
     const { pitTime, laps } = this.props.race;
     const { zeroFuelLaptime, weightCost } = this.state.driver;
-    const { fuelCapacity } = this.state.driver.car;
     const { stints } = this.state;
     const pitTimeLost = (stints - 1) * pitTime;
     const bareLaps = laps * zeroFuelLaptime;

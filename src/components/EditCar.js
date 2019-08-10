@@ -9,10 +9,13 @@ class EditCar extends React.Component {
   enterFuelAmount = e => {
     const newFuel = e.target.value;
     this.setState(prevState => {
-      const newCar = Object.assign({...prevState.driver.car}, {fuelCapacity: newFuel});
-      return {driver: Object.assign({}, prevState.driver, {car: newCar})}
-    })
-  }
+      const newCar = Object.assign(
+        { ...prevState.driver.car },
+        { fuelCapacity: newFuel }
+      );
+      return { driver: Object.assign({}, prevState.driver, { car: newCar }) };
+    });
+  };
   handleSelectCar = e => {
     this.setState(
       {
@@ -39,12 +42,12 @@ class EditCar extends React.Component {
     );
   };
   calcWeightCost = () => {
-    console.log("costcalc");
     const { highFuel, lowFuel } = this.state;
+    console.log(highFuel, lowFuel);
     const literWeight = v => v * 0.75;
     const lapDelta = (highFuel - lowFuel) * 1000;
     const endCost = (
-      lapDelta / literWeight(this.state.driver.fuelCapacity)
+      lapDelta / literWeight(this.state.driver.car.fuelCapacity)
     ).toFixed(3);
     this.setState(prevState => {
       return {
@@ -79,12 +82,19 @@ class EditCar extends React.Component {
               );
             })}
           </select>
-          {this.state.driver.car.makeModel === "...Other" && <React.Fragment>
-            <div className="form-group">
-              <label>Manual Fuel Capacity</label>
-              <input type="number" step="1" value={this.state.driver.car.fuelCapacity} onChange={this.enterFuelAmount} />
-            </div>
-          </React.Fragment>}
+          {this.state.driver.car.makeModel === "...Other" && (
+            <React.Fragment>
+              <div className="form-group">
+                <label>Manual Fuel Capacity</label>
+                <input
+                  type="number"
+                  step="1"
+                  value={this.state.driver.car.fuelCapacity}
+                  onChange={this.enterFuelAmount}
+                />
+              </div>
+            </React.Fragment>
+          )}
           <h6>{this.state.driver.car.fuelCapacity} liters of fuel</h6>
           <hr />
           <div className="row">
