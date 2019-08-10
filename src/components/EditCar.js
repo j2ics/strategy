@@ -139,10 +139,17 @@ class EditCar extends React.Component {
                 />
               </div>
               <h6>Max laps on full tank: {this.getMaxLaps()}</h6>
+              <h6 style={{color:"maroon"}}>
+                A full tank will slow you by {((this.state.driver.weightCost * this.state.driver.fuelCapacity)/1000).toFixed(3)} seconds
+              </h6>
             </div>
           </div>
           <hr />
-          <button onClick={this.setCar} href="#" className="btn btn-warning">
+          <button
+            onClick={this.setCar}
+            href="#"
+            className="btn btn-warning"
+          >
             Update Car
           </button>
         </div>
