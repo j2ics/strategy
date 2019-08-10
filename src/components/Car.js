@@ -12,7 +12,7 @@ class Car extends React.Component {
 
   checkCapacity = () => {
     return (
-      this.state.driver.fuelCapacity >=
+      this.state.driver.car.fuelCapacity >=
       this.state.driver.burnRate * (this.props.race.laps / this.state.stints)
     );
   };

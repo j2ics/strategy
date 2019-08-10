@@ -16,7 +16,6 @@ class App extends React.Component {
       driversReady: false,
       // drivers: [],
       driver: {
-        fuelCapacity: 105,
         zeroFuelLaptime: 62376,
         driverName: `Default Driver`,
         image: Faker.image.image(),

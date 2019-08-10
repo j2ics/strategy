@@ -11,7 +11,7 @@ class EditCar extends React.Component {
       driver: Object.assign({}, this.state.driver, {
         car: JSON.parse(e.target.value)
       })
-    });
+    }, this.computeMaxLaps);
   };
   handleChangeLow = t => {
     this.setState({ lowFuel: t.target.value }, this.calcWeightCost);
@@ -52,11 +52,6 @@ class EditCar extends React.Component {
         })
       };
     });
-  };
-
-  getMaxLaps = () => {
-    const { fuelCapacity, burnRate } = this.state.driver;
-    return Math.floor(fuelCapacity / burnRate);
   };
 
   render() {
@@ -138,9 +133,9 @@ class EditCar extends React.Component {
                   onChange={this.updateBurnRate}
                 />
               </div>
-              <h6>Max laps on full tank: {this.getMaxLaps()}</h6>
+              <h6>Max laps on full tank: {Math.floor(this.state.driver.car.fuelCapacity/this.state.driver.burnRate)}</h6>
               <h6 style={{color:"maroon"}}>
-                A full tank will slow you by {((this.state.driver.weightCost * this.state.driver.fuelCapacity)/1000).toFixed(3)} seconds
+                A full tank will slow you by {((this.state.driver.weightCost * this.state.driver.car.fuelCapacity)/1000).toFixed(3)} seconds
               </h6>
             </div>
           </div>
