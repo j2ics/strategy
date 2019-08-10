@@ -150,7 +150,7 @@ class EditCar extends React.Component {
             href="#"
             className="btn btn-warning"
           >
-            Update Car
+            Plan Stints
           </button>
         </div>
       </div>
