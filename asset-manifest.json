@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/strategy/static/css/main.ff893694.chunk.css",
-    "main.js": "/strategy/static/js/main.c4a50437.chunk.js",
-    "main.js.map": "/strategy/static/js/main.c4a50437.chunk.js.map",
+    "main.js": "/strategy/static/js/main.e87327c3.chunk.js",
+    "main.js.map": "/strategy/static/js/main.e87327c3.chunk.js.map",
     "runtime~main.js": "/strategy/static/js/runtime~main.92d6dbff.js",
     "runtime~main.js.map": "/strategy/static/js/runtime~main.92d6dbff.js.map",
     "static/js/2.f366ecc3.chunk.js": "/strategy/static/js/2.f366ecc3.chunk.js",
     "static/js/2.f366ecc3.chunk.js.map": "/strategy/static/js/2.f366ecc3.chunk.js.map",
     "index.html": "/strategy/index.html",
-    "precache-manifest.34665de8c043488e413435e07a46c31a.js": "/strategy/precache-manifest.34665de8c043488e413435e07a46c31a.js",
+    "precache-manifest.3f712f7c000c4e2ad2f214faa89435f9.js": "/strategy/precache-manifest.3f712f7c000c4e2ad2f214faa89435f9.js",
     "service-worker.js": "/strategy/service-worker.js",
     "static/css/main.ff893694.chunk.css.map": "/strategy/static/css/main.ff893694.chunk.css.map"
   }
