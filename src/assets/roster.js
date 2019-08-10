@@ -5,6 +5,7 @@ export default {
     { makeModel: "Chevrolet Corvette GTLM", fuelCapacity: 105 },
     { makeModel: "Ford GT Endurance", fuelCapacity: 105 },
     { makeModel: "Aston Martin DB Vantage GTE", fuelCapacity: 105 },
-    { makeModel: "Porsche 911 GTE", fuelCapacity: 95 }
+    { makeModel: "Porsche 911 GTE", fuelCapacity: 95 },
+    { makeModel: "...Other", fuelCapacity: 0 }
   ]
 };

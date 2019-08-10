@@ -4,14 +4,24 @@ class EditCar extends React.Component {
   state = {
     driver: this.props.driver,
     highFuel: 0,
-    lowFuel: this.props.driver.zeroFuelLaptime/1000
+    lowFuel: this.props.driver.zeroFuelLaptime / 1000
   };
+  enterFuelAmount = e => {
+    const newFuel = e.target.value;
+    this.setState(prevState => {
+      const newCar = Object.assign({...prevState.driver.car}, {fuelCapacity: newFuel});
+      return {driver: Object.assign({}, prevState.driver, {car: newCar})}
+    })
+  }
   handleSelectCar = e => {
-    this.setState({
-      driver: Object.assign({}, this.state.driver, {
-        car: JSON.parse(e.target.value)
-      })
-    }, this.computeMaxLaps);
+    this.setState(
+      {
+        driver: Object.assign({}, this.state.driver, {
+          car: JSON.parse(e.target.value)
+        })
+      },
+      this.computeMaxLaps
+    );
   };
   handleChangeLow = t => {
     this.setState({ lowFuel: t.target.value }, this.calcWeightCost);
@@ -69,6 +79,12 @@ class EditCar extends React.Component {
               );
             })}
           </select>
+          {this.state.driver.car.makeModel === "...Other" && <React.Fragment>
+            <div className="form-group">
+              <label>Manual Fuel Capacity</label>
+              <input type="number" step="1" value={this.state.driver.car.fuelCapacity} onChange={this.enterFuelAmount} />
+            </div>
+          </React.Fragment>}
           <h6>{this.state.driver.car.fuelCapacity} liters of fuel</h6>
           <hr />
           <div className="row">
@@ -133,18 +149,26 @@ class EditCar extends React.Component {
                   onChange={this.updateBurnRate}
                 />
               </div>
-              <h6>Max laps on full tank: {Math.floor(this.state.driver.car.fuelCapacity/this.state.driver.burnRate)}</h6>
-              <h6 style={{color:"maroon"}}>
-                A full tank will slow you by {((this.state.driver.weightCost * this.state.driver.car.fuelCapacity)/1000).toFixed(3)} seconds
+              <h6>
+                Max laps on full tank:{" "}
+                {Math.floor(
+                  this.state.driver.car.fuelCapacity /
+                    this.state.driver.burnRate
+                )}
+              </h6>
+              <h6 style={{ color: "maroon" }}>
+                A full tank will slow you by{" "}
+                {(
+                  (this.state.driver.weightCost *
+                    this.state.driver.car.fuelCapacity) /
+                  1000
+                ).toFixed(3)}{" "}
+                seconds
               </h6>
             </div>
           </div>
           <hr />
-          <button
-            onClick={this.setCar}
-            href="#"
-            className="btn btn-warning"
-          >
+          <button onClick={this.setCar} href="#" className="btn btn-warning">
             Plan Stints
           </button>
         </div>
