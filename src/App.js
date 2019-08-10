@@ -7,6 +7,7 @@ import _ from "lodash";
 import Faker from "faker";
 import RaceDataForm from "./components/RaceDataForm";
 import EditCar from "./components/EditCar";
+import {Info} from './components/Info'
 
 class App extends React.Component {
   constructor() {
@@ -57,10 +58,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App jumbotron">
+      <div className="App">
         <h1>Race Strategy App</h1>
         <RaceDataForm race={this.state.race} onUpdateRace={this.updateRace} />
-        <div>
+        <div className="jumbotron">
           <div className="container">
             {/* <p>Click on Driver to Edit</p> */}
             <div className="row">
@@ -77,6 +78,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+        <Info />
       </div>
     );
   }
