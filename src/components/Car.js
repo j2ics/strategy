@@ -91,7 +91,7 @@ class Car extends React.Component {
               onChange={this.updateStints}
             />
             <hr />
-            {/* <button className="btn btn-success">Start Over</button> */}
+            <button className="btn btn-success">Start Over</button>
             <hr />
           </form>
           {this.checkCapacity() || this.state.stints <= 0 ? (
