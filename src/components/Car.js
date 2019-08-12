@@ -33,7 +33,8 @@ class Car extends React.Component {
     }
 
     const totalTime = pitTimeLost + bareLaps + fuelWeightPenalty;
-    return totalTime;
+
+    return { totalTime, fuelWeightPenalty };
   };
   componentWillReceiveProps = props => {
     this.setState({ driver: props.driver });
@@ -90,16 +91,45 @@ class Car extends React.Component {
               onChange={this.updateStints}
             />
             <hr />
-            <button className="btn btn-success">Start Over</button>
+            {/* <button className="btn btn-success">Start Over</button> */}
             <hr />
           </form>
-          {this.checkCapacity() || this.state.stints <= 0 ? null : (
-            <h6 style={{ color: "red" }}>!! Insufficient Fuel Capacity !!</h6>
+          {this.checkCapacity() || this.state.stints <= 0 ? (
+            <h4 style={{ color: "green" }}>
+              Load{" "}
+              {Math.ceil(
+                (this.props.race.laps / this.state.stints) *
+                  this.state.driver.burnRate
+              )}{" "}
+              liters of fuel per stint
+            </h4>
+          ) : (
+            <h3 style={{ color: "red" }}>
+              !! Insufficient Fuel Capacity !!
+            </h3>
           )}
-          <h5>
+          <h3>
             Estimated Time:{" "}
-            {this.state.stints >= 1 ? this.msToHTime(this.getRaceTime()) : null}
-          </h5>
+            {this.state.stints >= 1
+              ? this.msToHTime(this.getRaceTime().totalTime)
+              : null}
+          </h3>
+          <h6>
+            Total Time Lost To Fuel Weight:{" "}
+            {this.state.stints >= 1
+              ? this.msToHTime(
+                  this.getRaceTime().fuelWeightPenalty * this.state.stints
+                )
+              : null}
+          </h6>
+          <h6>
+            Total Time Lost To Pit Stops:{" "}
+            {this.state.stints >= 1
+              ? this.msToHTime(
+                  (this.state.stints-1)*this.props.race.pitTime
+                )
+              : null}
+          </h6>
         </div>
       </div>
     );

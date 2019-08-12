@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import "./App.css";
 import Car from "./components/Car";
 import DriversForm from "./components/DriversForm";
@@ -66,14 +66,17 @@ class App extends React.Component {
             {/* <p>Click on Driver to Edit</p> */}
             <div className="row">
               {this.state.driversReady == false ? (
+                <Fragment>
                 <EditCar
                   onUpdateDriver={this.updateDriver}
                   roster={ROSTER.cars}
                   driver={this.state.driver}
                   // race={this.state.race}
-                />
+                  />
+                  {this.showDrivers()}
+                  </Fragment>
               ) : (
-                this.showDrivers()
+                <h2>WHoops</h2>
               )}
             </div>
           </div>
