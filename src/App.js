@@ -73,10 +73,10 @@ class App extends React.Component {
                   driver={this.state.driver}
                   // race={this.state.race}
                   />
-                  {this.showDrivers()}
                   </Fragment>
               ) : (
-                <h2>WHoops</h2>
+                this.showDrivers()
+                // <h2>WHoops</h2>
               )}
             </div>
           </div>
